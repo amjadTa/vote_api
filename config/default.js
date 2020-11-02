@@ -12,7 +12,7 @@ module.exports = {
   },
 
   frontEnd: {
-    domain: 'http://localhost:4200',
+    domain: 'http://46.249.63.69:4200',
   },
 
   auth: {
@@ -29,7 +29,7 @@ module.exports = {
   },
 
   db: {
-    url: 'mongodb://46.249.63.69:27017/election_day',
+    url: 'mongodb://localhost:27017/election_day',
     name: 'election_day',
   },
 

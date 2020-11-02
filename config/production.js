@@ -8,7 +8,7 @@ module.exports = {
 
   api: {
     port: 3001,
-    root: '/cms/api',
+    root: '/api',
   },
 
   auth: {
