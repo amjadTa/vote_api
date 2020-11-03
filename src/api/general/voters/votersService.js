@@ -52,18 +52,18 @@ class VotersService {
     async list(query) {
         let voters;
         if(query.number != '' && query.light != "") {
-            voters = await this.repository.allList(query.number, query.circle, query.light);
+            voters = await this.repository.allList(query.number, query.circle, query.light, query.user_name);
         }
         else if(query.number != '' && query.light == "") {
-            voters = await this.repository.lightEmptyList(query.number, query.circle);
+            voters = await this.repository.lightEmptyList(query.number, query.circle, query.user_name);
         }
 
         else if(query.number == '' && query.light != "") {
-            voters = await this.repository.numberEmptyList(query.circle, query.light);
+            voters = await this.repository.numberEmptyList(query.circle, query.light, query.user_name);
         }
 
         else {
-            voters = await this.repository.allDefualtsList(query.circle);
+            voters = await this.repository.allDefualtsList(query.circle, query.user_name);
         }
 
         const result = voters.map(item => this.votersToPhone(item));

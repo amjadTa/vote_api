@@ -53,7 +53,7 @@ app.use(`${root}/update`, voterController);
 app.use(logErrors);
 app.use(clientErrorHandler);
 app.get('/', (req, res) => {
-  res.send('Hello to CMS Application!');
+  res.send('Hello to Voter Application!');
 });
 
 app.listen(port, '0.0.0.0');

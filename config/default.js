@@ -30,6 +30,7 @@ module.exports = {
 
   db: {
     url: 'mongodb://localhost:27017/election_day',
+    // url: 'mongodb://46.249.63.69:27017/election_day',
     name: 'election_day',
   },
 

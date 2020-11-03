@@ -63,20 +63,20 @@ class VotersRepository extends BaseRepository {
         .insertOne(item));
   }
 
-  allList(number, circle, light) {
+  allList(number, circle, light, user_name) {
     return this.dbClient
     .then(db => db
       .collection(this.collection)
       .aggregate([
         { $match: { calphi_number: parseInt(number),  '2020_support': light, $or:[{circle_1: circle}, {circle_2: circle}],
-            $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}], did_vote: false,  contact_made: false} },
+            $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}], did_vote: false,  contact_made: false, assign_to: user_name} },
         { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
         { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
       ])
       .toArray())
   }
 
-  lightEmptyList(number, circle) {
+  lightEmptyList(number, circle, user_name) {
       const green = 'לין';
       const lightBlue = 'נטיה ללין';
       const yellow1 = 'מתלבט';
@@ -86,7 +86,7 @@ class VotersRepository extends BaseRepository {
       .collection(this.collection)
       .aggregate([
         { $match: { calphi_number: parseInt(number), $or:[{circle_1: circle}, {circle_2: circle}], $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}],
-         did_vote: false,  contact_made: false, $or: [
+         did_vote: false,  contact_made: false, assign_to: user_name, $or: [
              {'2020_support': green},
              {'2020_support': lightBlue},
              {'2020_support': yellow1},
@@ -98,20 +98,20 @@ class VotersRepository extends BaseRepository {
       .toArray())
   }
 
-  numberEmptyList(circle, light) {
+  numberEmptyList(circle, light, user_name) {
     return this.dbClient
     .then(db => db
       .collection(this.collection)
       .aggregate([
         { $match: { '2020_support': light, $or:[{circle_1: circle}, {circle_2: circle}],
-            $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}], did_vote: false,  contact_made: false} },
+            $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}], did_vote: false,  contact_made: false, assign_to: user_name} },
         { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
         { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
       ])
       .toArray())
   }
 
-  allDefualtsList(circle) {
+  allDefualtsList(circle, user_name) {
     const green = 'לין';
     const lightBlue = 'נטיה ללין';
     const yellow1 = 'מתלבט';
@@ -121,7 +121,7 @@ class VotersRepository extends BaseRepository {
     .collection(this.collection)
     .aggregate([
       { $match: { $or:[{circle_1: circle}, {circle_2: circle}], $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}],
-       did_vote: false,  contact_made: false, $or: [
+       did_vote: false,  contact_made: false, assign_to: user_name, $or: [
            {'2020_support': green},
            {'2020_support': lightBlue},
            {'2020_support': yellow1},
