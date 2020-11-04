@@ -97,7 +97,10 @@ class VotersService {
             firs_name: voter.first_name,
             last_name: voter.last_name,
             voter_id: voter.id,
-            did_vote: true
+            did_vote: true,
+            cell_number: voter.phone,
+            "2020_support": voter.support,
+            assign_by: voter.user
         } : {};
     }
 
