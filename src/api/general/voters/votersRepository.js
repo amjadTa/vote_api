@@ -49,6 +49,13 @@ class VotersRepository extends BaseRepository {
         .updateOne({ voter_id: id }, { $set: {did_vote: true} }, { upsert: true }));
   }
 
+  didVote(id) {
+    return this.dbClient
+      .then(db => db
+        .collection(this.collection)
+        .findOne({ voter_id: id, did_vote: true }));
+  }
+
   updateContactMade(id) {
     return this.dbClient
     .then(db => db
@@ -69,6 +76,19 @@ class VotersRepository extends BaseRepository {
       .collection(this.collection)
       .aggregate([
         { $match: { calphi_number: parseInt(number),  '2020_support': light, $or:[{circle_1: circle}, {circle_2: circle}],
+            $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}], did_vote: false,  contact_made: false, assign_to: user_name} },
+        { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+        { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+      ])
+      .toArray())
+  }
+
+  noCircleToCall(number, light, user_name) {
+    return this.dbClient
+    .then(db => db
+      .collection(this.collection)
+      .aggregate([
+        { $match: { calphi_number: parseInt(number),  '2020_support': light,
             $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}], did_vote: false,  contact_made: false, assign_to: user_name} },
         { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
         { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
@@ -98,12 +118,47 @@ class VotersRepository extends BaseRepository {
       .toArray())
   }
 
+  lightEmptyNoCircleList(number, user_name) {
+    const green = 'לין';
+      const lightBlue = 'נטיה ללין';
+      const yellow1 = 'מתלבט';
+      const yellow2 = 'לין או מועמד אחר';
+    return this.dbClient
+    .then(db => db
+      .collection(this.collection)
+      .aggregate([
+        { $match: { calphi_number: parseInt(number), $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}],
+         did_vote: false,  contact_made: false, assign_to: user_name, $or: [
+             {'2020_support': green},
+             {'2020_support': lightBlue},
+             {'2020_support': yellow1},
+             {'2020_support': yellow2}
+            ]} },
+        { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+        { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+      ])
+      .toArray())
+  }
+
   numberEmptyList(circle, light, user_name) {
     return this.dbClient
     .then(db => db
       .collection(this.collection)
       .aggregate([
         { $match: { '2020_support': light, $or:[{circle_1: circle}, {circle_2: circle}],
+            $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}], did_vote: false,  contact_made: false, assign_to: user_name} },
+        { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+        { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+      ])
+      .toArray())
+  }
+
+  numberEmptyNoCricleList(light, user_name) {
+    return this.dbClient
+    .then(db => db
+      .collection(this.collection)
+      .aggregate([
+        { $match: { '2020_support': light,
             $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}], did_vote: false,  contact_made: false, assign_to: user_name} },
         { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
         { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
@@ -131,6 +186,27 @@ class VotersRepository extends BaseRepository {
       { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
     ])
     .toArray())
+}
+allDefualtsNoCircleList(user_name) {
+  const green = 'לין';
+  const lightBlue = 'נטיה ללין';
+  const yellow1 = 'מתלבט';
+  const yellow2 = 'לין או מועמד אחר';
+return this.dbClient
+.then(db => db
+  .collection(this.collection)
+  .aggregate([
+    { $match: { $and: [{cell_number: {$ne: null}}, {cell_number: {$ne: ''}}],
+     did_vote: false,  contact_made: false, assign_to: user_name, $or: [
+         {'2020_support': green},
+         {'2020_support': lightBlue},
+         {'2020_support': yellow1},
+         {'2020_support': yellow2}
+        ]} },
+    { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+    { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number:'$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+  ])
+  .toArray())
 }
 }
 

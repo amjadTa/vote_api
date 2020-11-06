@@ -37,6 +37,8 @@ class VotersService {
       }
 
     async updateVoter(body) {
+        const did_vote = await this.repository.didVote(body.id);
+        if(did_vote) { throw new Error ('already vote'); }
         return await this.repository.UpdateVoter(body.id);
     }
     
@@ -52,18 +54,38 @@ class VotersService {
     async list(query) {
         let voters;
         if(query.number != '' && query.light != "") {
-            voters = await this.repository.allList(query.number, query.circle, query.light, query.user_name);
+            if(query.circle == 'No'){
+                voters = await this.repository.noCircleToCall(query.number, query.light, query.user_name);
+            }
+            else {
+                voters = await this.repository.allList(query.number, query.circle, query.light, query.user_name);
+            }
         }
         else if(query.number != '' && query.light == "") {
-            voters = await this.repository.lightEmptyList(query.number, query.circle, query.user_name);
+            if(query.circle == 'No'){
+                voters = await this.repository.lightEmptyNoCircleList(query.number, query.user_name);
+            }
+            else {
+                voters = await this.repository.lightEmptyList(query.number, query.circle, query.user_name);
+            }
         }
 
         else if(query.number == '' && query.light != "") {
-            voters = await this.repository.numberEmptyList(query.circle, query.light, query.user_name);
+            if(query.circle == 'No'){
+                voters = await this.repository.numberEmptyNoCricleList(query.light, query.user_name);
+            }
+            else {
+                voters = await this.repository.numberEmptyList(query.circle, query.light, query.user_name);
+            }
         }
 
         else {
-            voters = await this.repository.allDefualtsList(query.circle, query.user_name);
+            if(query.circle == 'No'){
+                voters = await this.repository.allDefualtsNoCircleList( query.user_name);
+            }
+            else {
+                voters = await this.repository.allDefualtsList(query.circle, query.user_name);
+            }
         }
 
         const result = voters.map(item => this.votersToPhone(item));
