@@ -81,7 +81,7 @@ class VotersService {
 
         else {
             if(query.circle == 'No'){
-                voters = await this.repository.allDefualtsNoCircleList( query.user_name);
+                voters = await this.repository.allDefualtsNoCircleList(query.user_name);
             }
             else {
                 voters = await this.repository.allDefualtsList(query.circle, query.user_name);
