@@ -52,6 +52,7 @@ class UserService {
       userName: user.user_name,
       role: user.role,
       id: user.tz,
+      role: user.role
     } : {};
   }
   mapDtoToUser(dto) {

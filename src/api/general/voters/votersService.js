@@ -87,7 +87,6 @@ class VotersService {
                 voters = await this.repository.allDefualtsList(query.circle, query.user_name);
             }
         }
-
         const result = voters.map(item => this.votersToPhone(item));
         return result;
     }
