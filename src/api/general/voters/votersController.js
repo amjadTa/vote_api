@@ -34,6 +34,32 @@ router.get('/search_by_box',
         }
     });
 
+router.get('/voters_report',
+    async (req, res) => {
+        try {
+            const result = await voterService.votersReport(req.query);
+            res.send(result);
+        }
+        catch (error) {
+            const loggerMessage = 'voters: votersController, function: /voters_report, message: ' + error.message;
+            logger.error(loggerMessage);
+            res.status(400).send({ error: error.message });
+        }
+    });
+
+router.get('/circles_report',
+    async (req, res) => {
+        try {
+            const result = await voterService.circlesReport(req.query);
+            res.send(result);
+        }
+        catch (error) {
+            const loggerMessage = 'voters: votersController, function: /circles_report, message: ' + error.message;
+            logger.error(loggerMessage);
+            res.status(400).send({ error: error.message });
+        }
+    });
+
 router.get('/get_calphis_numbers',
     async (req, res) => {
         try {
@@ -108,31 +134,5 @@ router.post('/add_voter', async (req, res) => {
         res.status(400).send({ error: error.message });
     }
 });
-
-router.get('/voters_report',
-    async (req, res) => {
-        try {
-            const result = await voterService.votersReport(req.query);
-            res.send(result);
-        }
-        catch (error) {
-            const loggerMessage = 'voters: votersController, function: /voters_report, message: ' + error.message;
-            logger.error(loggerMessage);
-            res.status(400).send({ error: error.message });
-        }
-});
-
-router.get('/circles_report',
-    async (req, res) => {
-        try {
-            const result = await voterService.circlesReport(req.query);
-            res.send(result);
-        }
-        catch (error) {
-            const loggerMessage = 'voters: votersController, function: /circles_report, message: ' + error.message;
-            logger.error(loggerMessage);
-            res.status(400).send({ error: error.message });
-        }
-    });
 
 module.exports = router;
