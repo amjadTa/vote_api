@@ -91,6 +91,16 @@ class VotersService {
         return result;
     }
 
+    async votersReport(query) {
+        const result = await this.repository.votersReport(query);
+        return result;
+    }
+
+    async circlesReport(query) {
+        const result = await this.repository.circlesReport(query);
+        return result;
+    }
+
     votersToPhone(voter) {
         return voter ? {
             first_name: voter._id.firs_name,
