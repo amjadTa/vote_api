@@ -41,7 +41,7 @@ module.exports = {
     file: {
       logDir: 'logs',
       logFile: 'bundle_node.log',
-      level: 'debug',
+      level: 'debug', 
       maxsize: 1024 * 1024 * 10, // 10MB
       maxFiles: 5,
     },
