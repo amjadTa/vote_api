@@ -127,7 +127,7 @@ class VotersRepository extends BaseRepository {
           { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
           { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
-        .toArray())
+        .toArray());
   }
 
   lightEmptyNoCircleList(number, user_name) {
@@ -307,6 +307,32 @@ class VotersRepository extends BaseRepository {
               'total_2020_lyn_plus_pref': '$total_2020_lyn_plus_pref',
             }
           },
+        ])
+        .toArray());
+  }
+
+  allVoters() {
+    const green = 'לין';
+    const lightBlue = 'נטיה ללין';
+    const yellow1 = 'מתלבט';
+    const yellow2 = 'לין או מועמד אחר';
+    return this.dbClient
+      .then(db => db
+        .collection(this.collection)
+        .aggregate([
+          {
+            $match: {
+              $and: [{ cell_number: { $ne: null } }, { cell_number: { $ne: '' } }],
+              did_vote: false, contact_made: false, $or: [
+                { '2020_support': green },
+                { '2020_support': lightBlue },
+                { '2020_support': yellow1 },
+                { '2020_support': yellow2 }
+              ]
+            }
+          },
+          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray());
   }

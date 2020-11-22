@@ -34,14 +34,14 @@ class VotersService {
     }
     onlyUnique(value, index, self) {
         return self.indexOf(value) === index;
-      }
+    }
 
     async updateVoter(body) {
         const did_vote = await this.repository.didVote(body.id);
-        if(did_vote) { throw new Error ('already vote'); }
+        if (did_vote) { throw new Error('already vote'); }
         return await this.repository.UpdateVoter(body.id);
     }
-    
+
     async updateContactMade(body) {
         return await this.repository.updateContactMade(body.id);
     }
@@ -53,38 +53,43 @@ class VotersService {
 
     async list(query) {
         let voters;
-        if(query.number != '' && query.light != "") {
-            if(query.circle == 'No'){
-                voters = await this.repository.noCircleToCall(query.number, query.light, query.user_name);
-            }
-            else {
-                voters = await this.repository.allList(query.number, query.circle, query.light, query.user_name);
-            }
+        if (query.role == 'admin' || query.role == 'manager') {
+            voters = await this.repository.allVoters();
         }
-        else if(query.number != '' && query.light == "") {
-            if(query.circle == 'No'){
-                voters = await this.repository.lightEmptyNoCircleList(query.number, query.user_name);
-            }
-            else {
-                voters = await this.repository.lightEmptyList(query.number, query.circle, query.user_name);
-            }
-        }
-
-        else if(query.number == '' && query.light != "") {
-            if(query.circle == 'No'){
-                voters = await this.repository.numberEmptyNoCricleList(query.light, query.user_name);
-            }
-            else {
-                voters = await this.repository.numberEmptyList(query.circle, query.light, query.user_name);
-            }
-        }
-
         else {
-            if(query.circle == 'No'){
-                voters = await this.repository.allDefualtsNoCircleList(query.user_name);
+            if (query.number != '' && query.light != "") {
+                if (query.circle == 'No') {
+                    voters = await this.repository.noCircleToCall(query.number, query.light, query.user_name);
+                }
+                else {
+                    voters = await this.repository.allList(query.number, query.circle, query.light, query.user_name);
+                }
             }
+            else if (query.number != '' && query.light == "") {
+                if (query.circle == 'No') {
+                    voters = await this.repository.lightEmptyNoCircleList(query.number, query.user_name);
+                }
+                else {
+                    voters = await this.repository.lightEmptyList(query.number, query.circle, query.user_name);
+                }
+            }
+
+            else if (query.number == '' && query.light != "") {
+                if (query.circle == 'No') {
+                    voters = await this.repository.numberEmptyNoCricleList(query.light, query.user_name);
+                }
+                else {
+                    voters = await this.repository.numberEmptyList(query.circle, query.light, query.user_name);
+                }
+            }
+
             else {
-                voters = await this.repository.allDefualtsList(query.circle, query.user_name);
+                if (query.circle == 'No') {
+                    voters = await this.repository.allDefualtsNoCircleList(query.user_name);
+                }
+                else {
+                    voters = await this.repository.allDefualtsList(query.circle, query.user_name);
+                }
             }
         }
         const result = voters.map(item => this.votersToPhone(item));
@@ -142,13 +147,13 @@ class VotersService {
     }
 
     circle1ToDto(circle) {
-        return circle || circle.circle_1 ||  circle.circle_1 != ''? {
+        return circle || circle.circle_1 || circle.circle_1 != '' ? {
             circle: circle.circle_1,
         } : {};
     }
 
     circle2ToDto(circle) {
-        return circle || circle.circle_2 ||  circle.circle_2 != ''? {
+        return circle || circle.circle_2 || circle.circle_2 != '' ? {
             circle: circle.circle_2,
         } : {};
     }
