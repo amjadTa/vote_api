@@ -54,7 +54,7 @@ class VotersService {
     async list(query) {
         let voters;
         if (query.role == 'admin' || query.role == 'manager') {
-            voters = await this.repository.allVoters();
+            voters = await this.adminList(query);
         }
         else {
             if (query.number != '' && query.light != "") {
@@ -94,6 +94,45 @@ class VotersService {
         }
         const result = voters.map(item => this.votersToPhone(item));
         return result;
+    }
+
+    async adminList(query) {
+        let voters;
+        if (query.number != '' && query.light != "") {
+            if (query.circle == 'No') {
+                voters = await this.repository.noCircleToCallAdmin(query.number, query.light);
+            }
+            else {
+                voters = await this.repository.allListAdmin(query.number, query.circle, query.light);
+            }
+        }
+        else if (query.number != '' && query.light == "") {
+            if (query.circle == 'No') {
+                voters = await this.repository.lightEmptyNoCircleListAdmin(query.number);
+            }
+            else {
+                voters = await this.repository.lightEmptyListAdmin(query.number, query.circle);
+            }
+        }
+
+        else if (query.number == '' && query.light != "") {
+            if (query.circle == 'No') {
+                voters = await this.repository.numberEmptyNoCricleListAdmin(query.light);
+            }
+            else {
+                voters = await this.repository.numberEmptyListAdmin(query.circle, query.light);
+            }
+        }
+
+        else {
+            if (query.circle == 'No') {
+                voters = await this.repository.allDefualtsNoCircleListAdmin();
+            }
+            else {
+                voters = await this.repository.allDefualtsListAdmin(query.circle);
+            }
+        }
+        return voters;
     }
 
     async votersReport(query) {
