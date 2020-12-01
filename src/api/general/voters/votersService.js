@@ -151,7 +151,10 @@ class VotersService {
             last_name: voter._id.last_name,
             phone: voter._id.cell_number,
             light: voter._id['2020_support'],
-            id: voter._id.voter_id
+            id: voter._id.voter_id,
+            calphi_number: voter._id.calphi_number,
+            circle: voter._id.circle_1 ? voter._id.circle_1 :
+                voter._id.circle_2 ? voter._id.circle_2 : ''
         } : {};
     }
 

@@ -81,8 +81,8 @@ class VotersRepository extends BaseRepository {
               $and: [{ cell_number: { $ne: null } }, { cell_number: { $ne: '' } }], did_vote: false, contact_made: false, assign_to: user_name
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -98,8 +98,8 @@ class VotersRepository extends BaseRepository {
               $and: [{ cell_number: { $ne: null } }, { cell_number: { $ne: '' } }], did_vote: false, contact_made: false, assign_to: user_name
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -124,8 +124,8 @@ class VotersRepository extends BaseRepository {
               ]
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray());
   }
@@ -150,8 +150,8 @@ class VotersRepository extends BaseRepository {
               ]
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -167,8 +167,8 @@ class VotersRepository extends BaseRepository {
               $and: [{ cell_number: { $ne: null } }, { cell_number: { $ne: '' } }], did_vote: false, contact_made: false, assign_to: user_name
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -184,8 +184,8 @@ class VotersRepository extends BaseRepository {
               $and: [{ cell_number: { $ne: null } }, { cell_number: { $ne: '' } }], did_vote: false, contact_made: false, assign_to: user_name
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -210,8 +210,8 @@ class VotersRepository extends BaseRepository {
               ]
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -235,8 +235,8 @@ class VotersRepository extends BaseRepository {
               ]
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -322,8 +322,8 @@ class VotersRepository extends BaseRepository {
               $and: [{ cell_number: { $ne: null } }, { cell_number: { $ne: '' } }], did_vote: false, contact_made: false,
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -339,8 +339,8 @@ class VotersRepository extends BaseRepository {
               $and: [{ cell_number: { $ne: null } }, { cell_number: { $ne: '' } }], did_vote: false, contact_made: false
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -365,8 +365,8 @@ class VotersRepository extends BaseRepository {
               ]
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -391,8 +391,8 @@ class VotersRepository extends BaseRepository {
               ]
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray());
   }
@@ -408,8 +408,8 @@ class VotersRepository extends BaseRepository {
               $and: [{ cell_number: { $ne: null } }, { cell_number: { $ne: '' } }], did_vote: false, contact_made: false
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -425,8 +425,8 @@ class VotersRepository extends BaseRepository {
               $and: [{ cell_number: { $ne: null } }, { cell_number: { $ne: '' } }], did_vote: false, contact_made: false
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -451,8 +451,8 @@ class VotersRepository extends BaseRepository {
               ]
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
@@ -477,8 +477,8 @@ class VotersRepository extends BaseRepository {
               ]
             }
           },
-          { $project: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
-          { $group: { _id: { firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
+          { $project: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } },
+          { $group: { _id: { calphi_number: '$calphi_number', circle_1: '$circle_1', circle_2: '$circle_2', firs_name: '$firs_name', last_name: '$last_name', cell_number: '$cell_number', '2020_support': '$2020_support', voter_id: '$voter_id' } } },
         ])
         .toArray())
   }
